@@ -26,12 +26,27 @@ function mouseCheck2(e){
 }
 function color(e){
     if(isDOWN){
-        e.target.style.background = "black";
+        e.target.style.background = bgColor;
     }
 }
-var num = prompt("Enter number");
+function setUp(){
+    num = prompt("Enter number");
+    if(num<100){
+       return num;
+    }
+    else{
+        alert("Can't greater than 100.");
+        setUp();
+    }
+}
+var num = 4;
 var wrapDiv = document.getElementById("wrap");
+var inputColor = document.getElementById("penColor");
+var fakeColor = document.getElementById("fakeColor");
 var isDOWN = false;
+var bgColor = "#000000";
+
+setUp();
 addDiv(num);
 grid(num);
 
@@ -40,3 +55,11 @@ for(let i = 0; i < wrapDiv.children.length; i++){
     wrapDiv.children[i].addEventListener("mouseup",()=>isDOWN = false);
     wrapDiv.children[i].addEventListener("mousemove",color);
 }
+function colorClick(e){
+    bgColor = e.target.value;
+    fakeColor.style.background = bgColor;
+}
+
+fakeColor.addEventListener("click",()=> inputColor.click());
+inputColor.addEventListener("input",colorClick);
+
