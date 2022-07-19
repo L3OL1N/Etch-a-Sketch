@@ -54,11 +54,33 @@ main{
         }
     }
     #wrap{
-        width: 500px;
+        min-width: 500px;
         height: 500px;
         border: 1px solid black;
         .create{
             text-align: center;
+        }
+    }
+}
+@media (max-width: 768px){
+    main{
+        width: 100%;
+        flex-direction: column;
+        gap: 10px;
+        aside{
+            display: flex;
+            align-items: center;
+            text-align: center;
+            #restart{
+                margin-top: 0;
+            }
+        }
+        #wrap{
+            box-sizing: border-box;
+            min-width: none;
+            height: auto;
+            width:100vw;
+            aspect-ratio: 1 / 1;
         }
     }
 }
