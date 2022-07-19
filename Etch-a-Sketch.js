@@ -20,6 +20,7 @@ function grid(num){
 function mouseCheckD(e){
     isDOWN = true;
     count = 1 ;
+    e.target.style.background = bgColor;
 }
 function mouseCheckU(e){
     isDOWN = false;
@@ -66,14 +67,17 @@ var num = 4;
 var wrapDiv = document.getElementById("wrap");
 var inputColor = document.getElementById("penColor");
 var fakeColor = document.getElementById("fakeColor");
+var restartBtn = document.getElementById("restart");
 var isDOWN = false;
 var bgColor = "#000000";
 const rgb2hex = (rgb) => `#${rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/).slice(1).map(n => parseInt(n, 10).toString(16).padStart(2, '0')).join('')}`
 
+//set up
 setUp();
 addDiv(num);
 grid(num);
 
+//add event listener
 for(let i = 0; i < wrapDiv.children.length; i++){
     wrapDiv.children[i].addEventListener("mousedown",mouseCheckD);
     wrapDiv.children[i].addEventListener("mouseup",mouseCheckU);
@@ -81,6 +85,12 @@ for(let i = 0; i < wrapDiv.children.length; i++){
     wrapDiv.children[i].addEventListener("mouseover",countTime);
 }
 
+//color background
 fakeColor.addEventListener("click",()=> inputColor.click());
 inputColor.addEventListener("input",colorClick);
 
+//restart button
+restartBtn.addEventListener("click",function(){
+    window.location.reload();
+    return false;
+});
